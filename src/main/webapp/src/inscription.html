@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Inscription</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="keywords" content="" />
+	<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+	<!-- Bootstrap Core CSS -->
+	<link href="../Bootstrap/css/bootstrap.min.css" rel='stylesheet' type='text/css' />
+	<!-- Custom CSS -->
+	<link href="../Bootstrap/css/style.css" rel='stylesheet' type='text/css' />
+	<!-- Graph CSS -->
+	<link href="../Bootstrap/css/font-awesome.css" rel="stylesheet">
+	<!-- jQuery -->
+	<link href='https://fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet' type='text/css'>
+	<!-- lined-icons -->
+	<link rel="stylesheet" href="../Bootstrap/css/icon-font.min.css" type='text/css' />
+	<!-- //lined-icons -->
+	<script src="../Bootstrap/js/jquery-1.10.2.min.js"></script>
+	<!--clock init-->
+</head>
+<body>
+<!--/login-->
+<div class="error_page">
+	<!--/login-top-->
+
+	<div class="forms-main">
+		<h2 align="center">Inscription</h2>
+		<div class="graph-form">
+			<div class="validation-form">
+				<!---->
+
+				<form>
+					<div class="vali-form">
+						<div class="col-md-6 form-group1">
+							<label class="control-label">Nom</label>
+							<input type="text" id="familyName" placeholder="Nom" required="">
+						</div>
+						<div class="col-md-6 form-group1 form-last">
+							<label class="control-label">Prénom</label>
+							<input type="text" id="givenName" placeholder="Prénom" required="">
+						</div>
+						<div class="clearfix"> </div>
+					</div>
+
+					<div class="col-md-12 form-group1 group-mail">
+						<label class="control-label">Email</label>
+						<input type="text" id="login" placeholder="Email" required="">
+					</div>
+
+					<div class="clearfix"> </div>
+					<div class="col-md-12 form-group1 group-mail">
+						<label class="control-label">Password</label>
+						<input type="password" id="password" placeholder="Password" required="">
+					</div>
+
+					<div class="clearfix"> </div>
+					<div class="col-md-12 form-group1 group-mail">
+						<label class="control-label">Date de naissance</label>
+						<input type="date" placeholder="Date de naissance(Format dd/mm/yyyy)" required="">
+					</div>
+					<div class="clearfix"> </div>
+					<div class="col-md-12 form-group1 group-mail">
+						<label class="control-label">Adresse</label>
+						<input type="text" placeholder="Adresse" required="">
+					</div>
+
+					<div class="clearfix"> </div>
+					<div class="col-md-12 form-group1 group-mail">
+						<label class="control-label">carte d'identité</label>
+						<input type="file"  required="">
+					</div>
+
+					<div class="col-md-12 form-group button-2">
+						<button type="submit" class="btn btn-primary">S'inscrire</button>
+						<button type="reset" class="btn btn-default" onclick=location.href="./login.html">Login</button>
+					</div>
+
+				</form>
+
+				<!---->
+			</div>
+			<div class="footer sign">
+			</div>
+		</div>
+
+	</div>
+
+</div>
+<!--js -->
+<script src="../Bootstrap/js/jquery.nicescroll.js"></script>
+<script src="../Bootstrap/js/scripts.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="../Bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+<script>
+    $("form").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "post",
+            url: "../voter",
+            data: {
+                "familyName":$("#familyName").val(),
+				"givenName":$("#givenName").val(),
+                "login": $("#login").val(),
+                "password": $("#password").val(),
+            },
+            success: function(data){
+                if(data.returnCode=="SUCCESS"){
+                    console.log(data.returnCode);
+                    alert("success");
+                    window.location.replace("./login.html");
+                }else{
+                    alert("failed");
+                }
+            },
+            error: function(){
+            }
+        });
+    });
+</script>
+</html>
