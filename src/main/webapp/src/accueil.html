@@ -253,13 +253,13 @@
                         <li><a href="accueil.html">Accueil</a></li>
                     </ol>
                 </div>
-                <!--<div style="width:100%;height:450px;background:url(../Ressources/Lyon.jpg)no-repeat;background-size:cover;">-->
-                    <!--<div class="mainpage">-->
-                        <!--<h1>Bienvenue sur Votechain !</h1>-->
-                        <!--<p> Votechain propose aux utilisateurs de voter pour les projets qui les concerne ! </p>-->
+                <div style="width:100%;height:450px;background:url(../Ressources/Lyon.jpg)no-repeat;background-size:cover;">
+                    <div class="mainpage">
+                        <h1>Bienvenue sur Votechain !</h1>
+                        <p> Votechain propose aux utilisateurs de voter pour les projets qui les concerne ! </p>
 
-                    <!--</div>-->
-                <!--</div>-->
+                    </div>
+                </div>
 
 
                 <!--//bottom-grids-->
@@ -378,7 +378,7 @@
                         if (data.returnCode == "SUCCESS") {
                             $(".name-caret").text(data.data.voter.familyName + " " + data.data.voter.givenName);
                         } else {
-                            alert("You are not login");
+                            window.location.replace("./not_login.html");
                         }
                     },
                     error: function () {

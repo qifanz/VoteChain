@@ -1,6 +1,8 @@
 package fr.insalyon.h4112.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by siyingjiang on 2018/4/25.
@@ -13,6 +15,7 @@ public class Voter {
     private String givenName;
     private String login;
     private String hashPassword;
+    private Set<Election> votedElections;
 
 
     @Id
@@ -70,5 +73,18 @@ public class Voter {
         this.givenName = givenName;
         this.login = login;
         this.hashPassword = hashPassword;
+        this.votedElections=new HashSet<>();
+    }
+    @OneToMany(fetch=FetchType.EAGER)
+    public Set<Election> getVotedElections() {
+        return votedElections;
+    }
+
+    public void setVotedElections(Set<Election> votedElections) {
+        this.votedElections = votedElections;
+    }
+
+    public void addVotedElection (Election election) {
+        votedElections.add(election);
     }
 }

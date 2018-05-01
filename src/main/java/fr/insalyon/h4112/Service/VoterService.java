@@ -45,4 +45,13 @@ public class VoterService {
     public Voter loginVoter (String login, String password) {
         return voterDao.login(login,""+password.hashCode());
     }
+
+    public boolean verifyLoginExistence (String login) {
+        Voter v=voterDao.findByLogin(login);
+        if (v!=null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

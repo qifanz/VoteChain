@@ -27,28 +27,38 @@ public class VoterController {
     public Map<String,Object> saveVoter(String familyName, String givenName, String login, String password){
         Map<String,Object> map=new HashMap<String,Object>();
         Voter voter=null;
+
+        if (voterService.verifyLoginExistence(login)) {
+            return ResultMapFactory.getErrorResultMap("Login existe deja, veuillez changer un login");
+        }
+
         try {
             voter=voterService.registerVoter(familyName,givenName,login,password);
         } catch (Exception e) {
             System.err.println(e.getMessage());
+            return ResultMapFactory.getErrorResultMap("Inscription echoue, veuillez reessayer");
         }
         if(voter!=null) {
             map.put("voter", voter);
             return ResultMapFactory.getSuccessResultMap(map);
         }
-        return ResultMapFactory.getErrorResultMap("");
+        return ResultMapFactory.getErrorResultMap("Inscription echoue, veuillez reessayer");
     }
     @RequestMapping(value="/session", method = { RequestMethod.POST})
     @ResponseBody
     public Map<String,Object> login(String login, String password, HttpSession session){
         Map<String,Object> map=new HashMap<String,Object>();
+        if (!voterService.verifyLoginExistence(login)) {
+            return ResultMapFactory.getErrorResultMap("Login n'existe pas");
+        }
+
         Voter voter=voterService.loginVoter(login,password);
         if(voter!=null){
             map.put("voter",voter);
             session.setAttribute("voter",voter);
             return ResultMapFactory.getSuccessResultMap(map);
         }
-        return ResultMapFactory.getErrorResultMap("");
+        return ResultMapFactory.getErrorResultMap("password erreur");
     }
 
     @RequestMapping(value="/session", method = { RequestMethod.GET})

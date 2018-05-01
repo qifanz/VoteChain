@@ -114,4 +114,24 @@
     </div>
 </div>
 </body>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            async: false,
+            type: "get",
+            url: "../session",
+
+            success: function (data) {
+                if (data.returnCode == "SUCCESS") {
+                    $(".name-caret").text(data.data.voter.familyName + " " + data.data.voter.givenName);
+                } else {
+                    window.location.replace("./not_login.html");
+                }
+            },
+            error: function () {
+            }
+        });
+    })
+</script>
 </html>

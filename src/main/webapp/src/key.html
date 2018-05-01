@@ -47,11 +47,6 @@
     <div class="left-content">
         <div class="inner-content">
             <!-- header-starts -->
-            <div class="header-section">
-                <!--menu-right-->
-
-                <!-- //header-ends -->
-            </div>
             <div class="mainpage">
                 <br/>
                 <p style="text-align:center;"><b><font size="7"> Génération de l'identifiant </font></b></p>
@@ -59,22 +54,43 @@
             </div>
 
 
-                <div class="panel-heading">Private Key</div>
-                <div class="panel-body"><input type="text" id="privateKey" class="form-control"
-                                               placeholder="Veuillez saisir ici votre private key ou utilisez le generateur"></input>
-                </div>
-            <button onclick="random_generate()" class="btn btn-default">Random</button>
+            <!--<div class="panel-heading">Private Key</div>-->
+            <!--<div class="panel-body"><input type="text" id="privateKey" class="form-control"-->
+            <!--placeholder="Veuillez saisir ici votre private key ou utilisez le generateur"></input>-->
+            <!--</div>-->
+            <!--<button onclick="random_generate()" class="btn btn-default">Random</button>-->
 
-                <div class="panel-heading">Public Key</div>
-                <div class="panel-body"><p>Veuillez recuperer ici le public key generee</p></div>
-            <button class="btn btn-default" onclick="show()">Generer</button>
-            <a href="validate_vote.html">
-                <button class="btn btn-default" id="validate" style='visibility:hidden'>Valider</button>
-            </a>
+            <!--<div class="panel-heading">Public Key</div>-->
+            <!--<div class="panel-body"><p>Veuillez recuperer ici le public key generee</p></div>-->
+            <!--<button class="btn btn-default" onclick="show()">Generer</button>-->
+            <!--<a href="validate_vote.html">-->
+            <!--<button class="btn btn-default" id="validate" style='visibility:hidden'>Valider</button>-->
+            <!--</a>-->
+            <div class="col-md-6 graph-2">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Private key</div>
+                    <div class="panel-body">
+                        <p>Veuillez recuperer ici le private key generee</p>
+                        <textarea class="h100" style="width: 93%;height:150px;" ></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 graph-2 second">
+                <div class="panel panel-primary two">
+                    <div class="panel-heading">Public key</div>
+                    <div class="panel-body">
+                        <p>Veuillez recuperer ici le public key generee</p>
+                        <textarea class="h100" style="width: 93%;height:150px;"></textarea>
+                    </div>
+                </div>
+                <button class="btn btn-default" onclick="show()">Generer</button>
+                <a href="validate_vote.html">
+                    <button class="btn btn-default" id="validate" style='visibility:hidden'>Valider</button>
+                </a>
+            </div>
         </div>
 
     </div>
-
 
 
 </div>
@@ -156,4 +172,23 @@
 </div>
 </div>
 </body>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            async: false,
+            type: "get",
+            url: "../session",
+
+            success: function (data) {
+                if (data.returnCode == "SUCCESS") {
+                    $(".name-caret").text(data.data.voter.familyName + " " + data.data.voter.givenName);
+                } else {
+                    window.location.replace("./not_login.html");
+                }
+            },
+            error: function () {
+            }
+        });
+    })
+</script>
 </html>

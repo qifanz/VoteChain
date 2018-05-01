@@ -1,6 +1,7 @@
 package fr.insalyon.h4112.dao;
 
 import fr.insalyon.h4112.Utility.HibernateUtil;
+import fr.insalyon.h4112.model.Election;
 import fr.insalyon.h4112.model.Voter;
 import org.codehaus.jackson.map.Serializers;
 import org.hibernate.Query;
@@ -51,5 +52,26 @@ public class VoterDao extends BaseDao{
         Voter v;
         v= (Voter) this.getSession().get(Voter.class,id);
         return v;
+    }
+
+    public Voter findByLogin (String login) {
+        Voter v;
+        String query="SELECT v FROM Voter v WHERE v.login=:login";
+        Query query1=this.getSession().createQuery(query);
+        query1.setParameter("login",login);
+        List<Voter> result= (List<Voter>) query1.list();
+        if(!result.isEmpty()) {
+            v=(Voter)query1.list().get(0);
+        } else {
+            System.out.println("login does not exist");
+            return null;
+        }
+        return v;
+
+    }
+
+    public Election findElectionByVoterAndElection (Integer voterId, Integer ElectionId) {
+        Election election;
+        return null;
     }
 }
