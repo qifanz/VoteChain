@@ -53,27 +53,18 @@
             </div>
             <div class="mainpage">
                 <br/>
-                <p style="text-align:center;"><b><font size="7"> Historique </font></b></p>
-
-                <div class="graph">
-                    <div class="tables">
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Election name</th>
-                                <th>Type</th>
-                                <th></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                        </table>
-                    </div>
-                    <div align="right">
-                        <button type="submit" class="mybtn" onclick=submit()>Submit</button>
-                    </div>
+                <p style="text-align:center;"><b><font size="7"> TBD ! </font></b></p>
+            </div>
+            <div class="grid-1">
+                <div class="form-body">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">Votre choix: </label>
+                            <div class="col-sm-8">
+                            </div>
+                        </div>
+                        <input type="submit" class="btn btn-primary btn-lg" value="Valider">
+                    </form>
                 </div>
             </div>
 
@@ -81,8 +72,8 @@
             <!--/sidebar-menu-->
             <div class="sidebar-menu">
                 <header class="logo">
-                    <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span></a><a href="accueil.html"> <span
-                        id="logo"> <h1>VoteChain</h1></span>
+                    <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span></a><a href="admin_accueil.html">
+                    <span id="logo"> <h1>VoteChain</h1></span>
                     <!--<img id="logo" src="" alt="Logo"/>-->
                 </a>
                 </header>
@@ -103,7 +94,9 @@
                 <!--//down-->
                 <div class="menu">
                     <ul id="menu">
-                        <li><a href="vote.html"><span>Voter</span></a></li>
+                        <li><a href="user_management.html"><span>Gestion des utilisateurs</span></a></li>
+                        <li><a href="vote.html"><span>Créer un vote</span></a></li>
+                        <li><a href="vote.html"><span>Votes en cours</span></a></li>
                         <li><a href="historique.html"><span>Historique des votes</span></a></li>
                         <li><a href="vote_explanation.html"><span>Les différents systèmes de vote</span></a></li>
                         <li><a href="forum.html"><span>Forum</span></a></li>
@@ -114,59 +107,7 @@
             </div>
             <div class="clearfix"></div>
         </div>
-
-    </div>
-</div>
-</body>
-
-<script>
-    $(document).ready(function () {
-        $.ajax({
-            async: false,
-            type: "get",
-            url: "../session",
-
-            success: function (data) {
-                if (data.returnCode == "SUCCESS") {
-                    $(".name-caret").text(data.data.voter.familyName + " " + data.data.voter.givenName);
-                    for (var i = 0; i < data.data.voter.votedElections.length; i++) {
-                        var type;
-                        switch (data.data.voter.votedElections[i].type) {
-                            case 1: {
-                                type = "simple";
-                                break;
-                            }
-                            case 2: {
-                                type = "delegation";
-                                break;
-                            }
-                            case 3: {
-                                type = "condorcet";
-                                break;
-                            }
-                            case 4: {
-                                type = "majoritaire";
-                                break;
-                            }
-                        }
-                        $(".table tbody").append("<tr>" +
-                            "<th scope=\"row\">"
-                            + data.data.voter.votedElections[i].id + "</th>"
-                            + "<td>" + data.data.voter.votedElections[i].name + "</td>"
-                            + "<td>" + type + "</td>"
-                            + "<td><input name='election-choice' type='radio'/></td>"
-                            + "</tr>");
-                    }
-                } else {
-                    window.location.replace("./not_login.html");
-                }
-            },
-            error: function () {
-            }
-        });
-    })
-</script>
-<script>
+        <script>
             var toggle = true;
 
             $(".sidebar-icon").click(function () {
@@ -183,5 +124,54 @@
 
                 toggle = !toggle;
             });
-</script>
+        </script>
+        <script>
+            var election_id = location.search.substr(1).split("=")[1];
+            $(document).ready(function () {
+
+                $.ajax({
+                    async: false,
+                    type: "get",
+                    url: "../elections/" + election_id,
+
+                    success: function (data) {
+                        if (data.returnCode == "SUCCESS") {
+                            for (var i = 0; i < data.data.election.candidates.length; i++) {
+                                var candidate = data.data.election.candidates[i];
+                                var html = "<div class='radio block'><label><input type='radio' name='election-choice' value='" + candidate.id + "'>" + candidate.name + "</label></div>";
+                                $(".col-sm-8").append(html);
+                            }
+                        } else {
+                            alert("error");
+                        }
+                    },
+                    error: function () {
+                    }
+                });
+            })
+            $("form").submit(function (e) {
+                e.preventDefault();
+                var choice = $('input[type="radio"][name="election-choice"]:checked').val();
+                alert(election_id)
+                alert(choice)
+//                $.ajax({
+//                    async: false,
+//                    type: "put",
+//                    url: "../elections/"+election_id,
+//
+//                    success: function (data) {
+//                        if (data.returnCode == "SUCCESS") {
+//                            alert("success");
+//                        } else {
+//                            alert("Loading error");
+//                        }
+//                    },
+//                    error: function () {
+//                    }
+//                })
+            })
+        </script>
+    </div>
+</div>
+</body>
 </html>

@@ -21,73 +21,161 @@
 	<!--clock init-->
 </head>
 <body>
-<!--/login-->
+<script>
+    document.body.style.height=window.innerHeight+'px'
+</script>
+<style>
+	@media (min-width: 800px){
+		.error-top {
+			width: 46%;
+			left:27%;
+		}
+		.form-horizontal .control-label {
+			padding-top: 0px;
+		}
+	}
+	h2.inner-tittle.page{
+		left:50%;
+		margin-left:-106px;
+	}
+</style>
 <div class="error_page">
 	<!--/login-top-->
 
-	<div class="forms-main">
-		<h2 align="center">Inscription</h2>
-		<div class="graph-form">
-			<div class="validation-form">
-				<!---->
+	<div class="error-top">
+		<h2 class="inner-tittle page" style="top:-16%">Inscription</h2>
+		<div class="">
+			<h3 class="inner-tittle t-inner">Inscription</h3>
+			<form class="form-horizontal">
 
-				<form>
-					<div class="vali-form">
-						<div class="col-md-6 form-group1">
-							<label class="control-label">Nom</label>
-							<input type="text" id="familyName" placeholder="Nom" required="">
-						</div>
-						<div class="col-md-6 form-group1 form-last">
-							<label class="control-label">Prénom</label>
-							<input type="text" id="givenName" placeholder="Prénom" required="">
-						</div>
-						<div class="clearfix"> </div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Nom</label>
+					<div class="col-sm-8">
+						<input id="familyName" type="text" class="form-control1"  placeholder="nom">
 					</div>
-
-					<div class="col-md-12 form-group1 group-mail">
-						<label class="control-label">Email</label>
-						<input type="text" id="login" placeholder="Email" required="">
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Prénom</label>
+					<div class="col-sm-8">
+						<input id="givenName" type="text" class="form-control1" placeholder="Prénom">
 					</div>
-
-					<div class="clearfix"> </div>
-					<div class="col-md-12 form-group1 group-mail">
-						<label class="control-label">Password</label>
-						<input type="password" id="password" placeholder="Password" required="">
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Email</label>
+					<div class="col-sm-8">
+						<input id="login" type="text" class="form-control1" placeholder="Email">
 					</div>
-
-					<div class="clearfix"> </div>
-					<div class="col-md-12 form-group1 group-mail">
-						<label class="control-label">Date de naissance</label>
-						<input type="date" placeholder="Date de naissance(Format dd/mm/yyyy)" required="">
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Password</label>
+					<div class="col-sm-8">
+						<input id="password" type="password" class="form-control1" placeholder="Password">
 					</div>
-					<div class="clearfix"> </div>
-					<div class="col-md-12 form-group1 group-mail">
-						<label class="control-label">Adresse</label>
-						<input type="text" placeholder="Adresse" required="">
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Date de naissance</label>
+					<div class="col-sm-8">
+						<input id="birthday" type="date" class="form-control1" placeholder="Date de naissance">
 					</div>
-
-					<div class="clearfix"> </div>
-					<div class="col-md-12 form-group1 group-mail">
-						<label class="control-label">carte d'identité</label>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label">Adresse</label>
+					<div class="col-sm-8">
+						<input id="address" type="text" class="form-control1" placeholder="Adresse">
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-3 control-label" style="margin-top:0">carte d'identité</label>
+					<div class="col-sm-8">
 						<input type="file"  required="">
 					</div>
+				</div>
+				<div class="form-group button-2">
+					<button type="submit" class="btn btn-primary">S'inscrire</button>
+					<button type="reset" class="btn btn-default" onclick=location.href="./login.html">Login</button>
+				</div>
 
-					<div class="col-md-12 form-group button-2">
-						<button type="submit" class="btn btn-primary">S'inscrire</button>
-						<button type="reset" class="btn btn-default" onclick=location.href="./login.html">Login</button>
-					</div>
 
-				</form>
 
-				<!---->
-			</div>
-			<div class="footer sign">
-			</div>
+
+
+			</form>
 		</div>
+
 
 	</div>
 
+
+	<!--//login-top-->
 </div>
+
+<!--/login-->
+<!--<div class="error_page">-->
+<!--&lt;!&ndash;/login-top&ndash;&gt;-->
+
+<!--<div class="forms-main">-->
+<!--<h2 align="center">Inscription</h2>-->
+<!--<div class="graph-form">-->
+<!--<div class="validation-form">-->
+<!--&lt;!&ndash;&ndash;&gt;-->
+
+<!--<form>-->
+<!--<div class="vali-form">-->
+<!--<div class="col-md-6 form-group1">-->
+<!--<label class="control-label">Nom</label>-->
+<!--<input type="text" id="familyName" placeholder="Nom" required="">-->
+<!--</div>-->
+<!--<div class="col-md-6 form-group1 form-last">-->
+<!--<label class="control-label">Prénom</label>-->
+<!--<input type="text" id="givenName" placeholder="Prénom" required="">-->
+<!--</div>-->
+<!--<div class="clearfix"> </div>-->
+<!--</div>-->
+
+<!--<div class="col-md-12 form-group1 group-mail">-->
+<!--<label class="control-label">Email</label>-->
+<!--<input type="text" id="login" placeholder="Email" required="">-->
+<!--</div>-->
+
+<!--<div class="clearfix"> </div>-->
+<!--<div class="col-md-12 form-group1 group-mail">-->
+<!--<label class="control-label">Password</label>-->
+<!--<input type="password" id="password" placeholder="Password" required="">-->
+<!--</div>-->
+
+<!--<div class="clearfix"> </div>-->
+<!--<div class="col-md-12 form-group1 group-mail">-->
+<!--<label class="control-label">Date de naissance</label>-->
+<!--<input type="date" placeholder="Date de naissance(Format dd/mm/yyyy)" required="">-->
+<!--</div>-->
+<!--<div class="clearfix"> </div>-->
+<!--<div class="col-md-12 form-group1 group-mail">-->
+<!--<label class="control-label">Adresse</label>-->
+<!--<input type="text" placeholder="Adresse" required="">-->
+<!--</div>-->
+
+<!--<div class="clearfix"> </div>-->
+<!--<div class="col-md-12 form-group1 group-mail">-->
+<!--<label class="control-label">carte d'identité</label>-->
+<!--<input type="file"  required="">-->
+<!--</div>-->
+
+<!--<div class="col-md-12 form-group button-2">-->
+<!--<button type="submit" class="btn btn-primary">S'inscrire</button>-->
+<!--<button type="reset" class="btn btn-default" onclick=location.href="./login.html">Login</button>-->
+<!--</div>-->
+
+<!--</form>-->
+
+<!--&lt;!&ndash;&ndash;&gt;-->
+<!--</div>-->
+<!--<div class="footer sign">-->
+<!--</div>-->
+<!--</div>-->
+
+<!--</div>-->
+
+<!--</div>-->
 <!--js -->
 <script src="../Bootstrap/js/jquery.nicescroll.js"></script>
 <script src="../Bootstrap/js/scripts.js"></script>
@@ -103,9 +191,11 @@
             url: "../voter",
             data: {
                 "familyName":$("#familyName").val(),
-				"givenName":$("#givenName").val(),
+                "givenName":$("#givenName").val(),
                 "login": $("#login").val(),
                 "password": $("#password").val(),
+				"birthday": $("#birthday").val(),
+                "address": $("#address").val(),
             },
             success: function(data){
                 if(data.returnCode=="SUCCESS"){

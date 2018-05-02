@@ -59,3 +59,21 @@
 .mybtn:hover {
     background: #00b6d7;
 }
+
+.input-nb {
+    border: 1px solid #ddd;
+    padding: 5px 8px;
+    color: #777;
+    background: #fff;
+    box-shadow: none !important;
+    width: 100%;
+    font-size: 0.85em;
+    font-weight: 100;
+    height: 40px;
+    border-radius: 0;
+    font-family: 'Roboto', sans-serif;
+    -webkit-appearance: none;
+    resize: none;
+    outline:none;
+    margin-bottom: 10px;
+}

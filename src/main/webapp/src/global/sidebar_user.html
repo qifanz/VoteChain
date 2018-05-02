@@ -1,0 +1,49 @@
+<div class="sidebar-menu">
+    <header class="logo">
+        <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span></a><a href="accueil.html"> <span
+            id="logo"> <h1>VoteChain</h1></span>
+        <!--<img id="logo" src="" alt="Logo"/>-->
+    </a>
+    </header>
+    <div style="border-top:1px solid rgba(69, 74, 84, 0.7)"></div>
+    <!--/down-->
+    <div class="down">
+        <a href="index.html"><img src="../Ressources/user.png" height="70" width="70"></a>
+        <a href="index.html"><span class=" name-caret">Jasmin Leo</span></a>
+        <ul>
+            <li><a class="tooltips" href="profile.html"><span>Profil</span><i class="lnr lnr-user"></i></a></li>
+            <li><a class="tooltips" href="settings.html"><span>Paramètres</span><i class="lnr lnr-cog"></i></a></li>
+            <li><a class="tooltips" href="login.html"><span>Log out</span><i class="lnr lnr-power-switch"></i></a></li>
+        </ul>
+    </div>
+    <!--//down-->
+    <div class="menu">
+        <ul id="menu">
+            <li><a href="vote.html"><span>Voter</span></a></li>
+            <li><a href="historique.html"><span>Historique des votes</span></a></li>
+            <li><a href="vote_explanation.html"><span>Systèmes de vote</span></a></li>
+            <li><a href="forum.html"><span>Forum</span></a></li>
+            <li><a href="apropos.html"><span>A propos</span></a></li>
+
+        </ul>
+    </div>
+</div>
+
+<script>
+    var toggle = true;
+
+    $(".sidebar-icon").click(function () {
+        if (toggle) {
+            $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+            $("#menu span").css({"position": "absolute"});
+        }
+        else {
+            $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+            setTimeout(function () {
+                $("#menu span").css({"position": "relative"});
+            }, 400);
+        }
+
+        toggle = !toggle;
+    });
+</script>

@@ -74,7 +74,7 @@
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>default</servlet-name>
-        <url-pattern>/Resources/*</url-pattern>
+        <url-pattern>/Ressources/*</url-pattern>
     </servlet-mapping>
     <!-- spring监听程序 -->
     <listener>

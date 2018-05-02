@@ -71,7 +71,7 @@
                     <div class="panel-heading">Private key</div>
                     <div class="panel-body">
                         <p>Veuillez recuperer ici le private key generee</p>
-                        <textarea class="h100" style="width: 93%;height:150px;" ></textarea>
+                        <textarea id="privateKeyArea" class="form-control1" style="width: 93%;height:150px;"></textarea>
                     </div>
                 </div>
             </div>
@@ -80,7 +80,7 @@
                     <div class="panel-heading">Public key</div>
                     <div class="panel-body">
                         <p>Veuillez recuperer ici le public key generee</p>
-                        <textarea class="h100" style="width: 93%;height:150px;"></textarea>
+                        <textarea id="publicKeyArea" class="form-control1" style="width: 93%;height:150px;"></textarea>
                     </div>
                 </div>
                 <button class="btn btn-default" onclick="show()">Generer</button>
@@ -95,6 +95,81 @@
 
 </div>
 
+
+
+<!--/sidebar-menu-->
+<div class="sidebar-menu">
+    <header class="logo">
+        <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span></a><a href="accueil.html"> <span
+            id="logo"> <h1>VoteChain</h1></span>
+        <!--<img id="logo" src="" alt="Logo"/>-->
+    </a>
+    </header>
+    <div style="border-top:1px solid rgba(69, 74, 84, 0.7)"></div>
+    <!--/down-->
+    <div class="down">
+        <a href="index.html"><img src="../Ressources/user.png" height="70" width="70"></a>
+        <a href="index.html"><span class=" name-caret">Jasmin Leo</span></a>
+        <ul>
+            <li><a class="tooltips" href="profile.html"><span>Profile</span><i class="lnr lnr-user"></i></a></li>
+            <li><a class="tooltips" href="settings.html"><span>Settings</span><i class="lnr lnr-cog"></i></a></li>
+            <li><a class="tooltips" href="login.html"><span>Log out</span><i class="lnr lnr-power-switch"></i></a></li>
+        </ul>
+    </div>
+    <!--//down-->
+    <div class="menu">
+        <ul id="menu">
+            <li><a href="vote.html"><span>Voter</span></a></li>
+            <li><a href="historique.html"><span>Historique des votes</span></a></li>
+            <li><a href="vote_explanation.html"><span>Les différents systèmes de vote</span></a></li>
+            <li><a href="forum.html"><span>Forum</span></a></li>
+            <li><a href="apropos.html"><span>A propos</span></a></li>
+
+        </ul>
+    </div>
+</div>
+<div class="clearfix"></div>
+</div>
+</div>
+</div>
+</body>
+<script>
+    var toggle = true;
+
+    $(".sidebar-icon").click(function () {
+        if (toggle) {
+            $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+            $("#menu span").css({"position": "absolute"});
+        }
+        else {
+            $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+            setTimeout(function () {
+                $("#menu span").css({"position": "relative"});
+            }, 400);
+        }
+
+        toggle = !toggle;
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            async: false,
+            type: "get",
+            url: "../session",
+
+            success: function (data) {
+                if (data.returnCode == "SUCCESS") {
+                    $(".name-caret").text(data.data.voter.familyName + " " + data.data.voter.givenName);
+                } else {
+                    window.location.replace("./not_login.html");
+                }
+            },
+            error: function () {
+            }
+        });
+    })
+</script>
 <script type="text/javascript">
     function random_generate() {
         var array = new Uint32Array(10);
@@ -114,74 +189,18 @@
 
 <script type="text/javascript">
     function show() {
+
         document.getElementById('validate').style.visibility = 'visible';
-    }
-</script>
-
-<!--/sidebar-menu-->
-<div class="sidebar-menu">
-    <header class="logo">
-        <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span></a><a href="accueil.html"> <span
-            id="logo"> <h1>VoteChain</h1></span>
-        <!--<img id="logo" src="" alt="Logo"/>-->
-    </a>
-    </header>
-    <div style="border-top:1px solid rgba(69, 74, 84, 0.7)"></div>
-    <!--/down-->
-    <div class="down">
-        <a href="index.html"><img src="../Ressources/user.png" height="70" width="70"></a>
-        <a href="index.html"><span class=" name-caret">Jasmin Leo</span></a>
-        <ul>
-            <li><a class="tooltips" href="index.html"><span>Profile</span><i class="lnr lnr-user"></i></a></li>
-            <li><a class="tooltips" href="index.html"><span>Settings</span><i class="lnr lnr-cog"></i></a></li>
-            <li><a class="tooltips" href="login.html"><span>Log out</span><i class="lnr lnr-power-switch"></i></a></li>
-        </ul>
-    </div>
-    <!--//down-->
-    <div class="menu">
-        <ul id="menu">
-            <li><a href="vote.html"><span>Voter</span></a></li>
-            <li><a href="historique.html"><span>Historique des votes</span></a></li>
-            <li><a href="vote_explanation.html"><span>Les différents systèmes de vote</span></a></li>
-            <li><a href="forum.html"><span>Forum</span></a></li>
-            <li><a href="apropos.html"><span>A propos</span></a></li>
-
-        </ul>
-    </div>
-</div>
-<div class="clearfix"></div>
-</div>
-<script>
-    var toggle = true;
-
-    $(".sidebar-icon").click(function () {
-        if (toggle) {
-            $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
-            $("#menu span").css({"position": "absolute"});
-        }
-        else {
-            $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
-            setTimeout(function () {
-                $("#menu span").css({"position": "relative"});
-            }, 400);
-        }
-
-        toggle = !toggle;
-    });
-</script>
-</div>
-</div>
-</body>
-<script>
-    $(document).ready(function () {
         $.ajax({
             async: false,
             type: "get",
-            url: "../session",
+            url: "../key",
 
             success: function (data) {
                 if (data.returnCode == "SUCCESS") {
-                    $(".name-caret").text(data.data.voter.familyName + " " + data.data.voter.givenName);
+                    document.getElementById("privateKeyArea").value = data.data.privateKey;
+                    document.getElementById("publicKeyArea").value = data.data.publicKey;
+
                 } else {
                     window.location.replace("./not_login.html");
                 }
@@ -189,6 +208,6 @@
             error: function () {
             }
         });
-    })
+    }
 </script>
 </html>

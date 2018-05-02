@@ -1,6 +1,7 @@
 package fr.insalyon.h4112.model;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,7 +17,8 @@ public class Voter {
     private String login;
     private String hashPassword;
     private Set<Election> votedElections;
-
+    private String address;
+    private Date birthDay;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -67,14 +69,32 @@ public class Voter {
     public void setGivenName(String givenName) {
         this.givenName = givenName;
     }
+    @Column(name = "VOTER_ADDRESS", unique = false, nullable = false)
+    public String getAddress() {
+        return address;
+    }
 
-    public  Voter(String familyName, String givenName, String login, String hashPassword) {
+    public void setAddress(String address) {
+        this.address = address;
+    }
+    @Column(name = "VOTER_BIRTHDAY", unique = false, nullable = false)
+    public Date getBirthDay() {
+        return birthDay;
+    }
+
+    public void setBirthDay(Date birthDay) {
+        this.birthDay = birthDay;
+    }
+
+    public Voter(String familyName, String givenName, String login, String hashPassword, String address, Date birthDay) {
         this.familyName = familyName;
         this.givenName = givenName;
         this.login = login;
         this.hashPassword = hashPassword;
-        this.votedElections=new HashSet<>();
+        this.address = address;
+        this.birthDay = birthDay;
     }
+
     @OneToMany(fetch=FetchType.EAGER)
     public Set<Election> getVotedElections() {
         return votedElections;

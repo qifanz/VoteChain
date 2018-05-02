@@ -20,6 +20,10 @@ public class VoterDao extends BaseDao{
         this.getSession().save(voter);
     }
 
+    public void update (Voter voter) {
+        this.getSession().update(voter);
+    }
+
     /**
      * search in the database the voter entity by its login and hash of password
      * @param login
@@ -71,7 +75,18 @@ public class VoterDao extends BaseDao{
     }
 
     public Election findElectionByVoterAndElection (Integer voterId, Integer ElectionId) {
-        Election election;
-        return null;
+        Election election = null;
+        Voter v = (Voter) this.getSession().get(Voter.class, voterId);
+        if (v == null) {
+            return null;
+        } else {
+            for (Election e : v.getVotedElections()) {
+                if (e.getId().equals(ElectionId)) {
+                    election = e;
+                }
+            }
+        }
+        return election;
     }
+
 }

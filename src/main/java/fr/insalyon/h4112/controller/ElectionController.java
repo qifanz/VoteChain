@@ -10,6 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
 import java.util.*;
 
 /**
@@ -30,7 +33,16 @@ public class ElectionController {
     @ResponseBody
     public Map<String,Object> createElection(@RequestBody Election election){
         Map<String,Object> map=new HashMap<String,Object>();
-        Election e=electionService.registerElection(election);
+        Election e= null;
+        try {
+            e = electionService.registerElection(election);
+        } catch (InvalidAlgorithmParameterException e1) {
+            return ResultMapFactory.getErrorResultMap(e1);
+        } catch (NoSuchAlgorithmException e1) {
+            return ResultMapFactory.getErrorResultMap(e1);
+        } catch (NoSuchProviderException e1) {
+            return ResultMapFactory.getErrorResultMap(e1);
+        }
         map.put("election",e);
         return ResultMapFactory.getSuccessResultMap(map);
     }
@@ -55,10 +67,10 @@ public class ElectionController {
 
     @RequestMapping(value="/elections/{id}", method = {RequestMethod.PUT})
     @ResponseBody
-    public Map<String,Object> participateVote(String idVoterPubKey, @PathVariable("id") Integer idElection){
+    public Map<String,Object> participateVote(Integer idVoter, Integer idVoterPubKey, @PathVariable("id") Integer idElection){
         Map<String,Object> map=new HashMap<String,Object>();
         //TODO: no passable exception
-        electionService.addVoterToElection(Integer.parseInt(idVoterPubKey),idElection);
+        electionService.addVoterToElection(idVoter,idVoterPubKey,idElection);
         return ResultMapFactory.getSuccessResultMap(map);
 
 

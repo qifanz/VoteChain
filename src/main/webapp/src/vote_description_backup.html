@@ -39,15 +39,6 @@
     <script src="../Bootstrap/js/jquery.easydropdown.js"></script>
 
     <!--//skycons-icons-->
-        <script>
-        $(function(){
-            var includes = $('[data-include]');
-            jQuery.each(includes, function(){
-                var file = 'global/' + $(this).data('include') + '.html';
-                $(this).load(file);
-            });
-        });
-    </script>
 </head>
 <body>
 <div class="page-container">
@@ -65,8 +56,8 @@
                 <!--/sub-heard-part-->
                 <div class="sub-heard-part">
                     <ol class="breadcrumb m-b-0">
-                        <li><a href="accueil.html">Accueil</a></li>
-                        <li class="active">Systèmes de vote</li>
+                        <li><a href="#">Home</a></li>
+                        <li class="active"> Tabs &amp; Panels</li>
                     </ol>
                 </div>
                 <!--/sub-heard-part-->
@@ -74,13 +65,14 @@
                 <div class="tab-main">
                     <!--/tabs-inner-->
                     <div class="tab-inner">
-                       
-                        <script src="../Bootstrap/js/cbpFWTabs.js"></script>
+                        <div id="tabs" class="tabs">
+
+                        </div>
+                        <script src="js/cbpFWTabs.js"></script>
                         <script>
                             new CBPFWTabs(document.getElementById('tabs'));
                         </script>
-
-                        <h3 class="inner-tittle two"></h3>
+                        <h3 class="inner-tittle two">Vertical Tabs </h3>
                         <div class="graph">
 
                             <div class="tabs">
@@ -129,10 +121,7 @@
                                     </p>
                                 </div>
                             </div>
-                        
-
-
-							<script>
+                            <script>
                                 $(function () {
                                     $('.tabs nav a').on('click', function () {
                                         show_content($(this).index());
@@ -157,18 +146,59 @@
                         <div class="clearfix"></div>
                     </div>
                 </div>
-                 <!--/sidebar-menu-->
-            <div data-include="sidebar_user"></div>
-            <div class="clearfix"></div>
                 <!--//tabs-inner-->
             </div>
-    </div>
-
-
-    </div>
-
-           
+            <!--//tabs-->
         </div>
+        <!--//outer-wp-->
+
+    </div>
+    <!--<div class="mainpage">-->
+    <!--<br/>-->
+    <!--<p style="text-align:center;"><b><font size="7"> Description du vote </font></b></p>-->
+    <!--<br/>-->
+    <!--<a href="key.html">-->
+    <!--<button class="btn btn-primary">Générer votre adresse !</button>-->
+    <!--</a>-->
+    <!--</div>-->
+
+
+    <!--/sidebar-menu-->
+    <div class="sidebar-menu">
+        <header class="logo">
+            <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span></a><a href="Accueil.html"> <span
+                id="logo"> <h1>VoteChain</h1></span>
+            <!--<img id="logo" src="" alt="Logo"/>-->
+        </a>
+        </header>
+        <div style="border-top:1px solid rgba(69, 74, 84, 0.7)"></div>
+        <!--/down-->
+        <div class="down">
+            <a href="index.html"><img src="../Ressources/user.png" height="70" width="70"></a>
+            <a href="index.html"><span class=" name-caret">Jasmin Leo</span></a>
+            <ul>
+                <li><a class="tooltips" href="index.html"><span>Profile</span><i class="lnr lnr-user"></i></a>
+                </li>
+                <li><a class="tooltips" href="index.html"><span>Settings</span><i class="lnr lnr-cog"></i></a>
+                </li>
+                <li><a class="tooltips" href="login.html"><span>Log out</span><i
+                        class="lnr lnr-power-switch"></i></a></li>
+            </ul>
+        </div>
+        <!--//down-->
+        <div class="menu">
+            <ul id="menu">
+                <li><a href="vote.html"><span>Voter</span></a></li>
+                <li><a href="historique.html"><span>Historique des votes</span></a></li>
+                <li><a href="vote_explanation.html"><span>Les différents systèmes de vote</span></a></li>
+                <li><a href="forum.html"><span>Forum</span></a></li>
+                <li><a href="apropos.html"><span>A propos</span></a></li>
+
+            </ul>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
 <script>
     var toggle = true;
 
@@ -212,6 +242,8 @@
 
 </script>
 
+</div>
+</div>
 </body>
 
 <script>

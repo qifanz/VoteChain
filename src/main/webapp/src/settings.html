@@ -1,0 +1,158 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <!-- Bootstrap Core CSS -->
+    <link href="../Bootstrap/css/bootstrap.min.css" rel='stylesheet' type='text/css'/>
+    <!-- Custom CSS -->
+    <link href="../Bootstrap/css/style.css" rel='stylesheet' type='text/css'/>
+    <!-- Graph CSS -->
+    <link href="../Bootstrap/css/font-awesome.css" rel="stylesheet">
+    <!-- jQuery -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet'
+          type='text/css'>
+    <!-- lined-icons -->
+    <link rel="stylesheet" href="../Bootstrap/css/icon-font.min.css" type='text/css'/>
+    <!-- //lined-icons -->
+    <script src="../Bootstrap/js/jquery-1.10.2.min.js"></script>
+    <script src="../Bootstrap/js/amcharts.js"></script>
+    <script src="../Bootstrap/js/serial.js"></script>
+    <script src="../Bootstrap/js/light.js"></script>
+    <script src="../Bootstrap/js/radar.js"></script>
+    <link href="../Bootstrap/css/barChart.css" rel='stylesheet' type='text/css'/>
+    <link href="../Bootstrap/css/fabochart.css" rel='stylesheet' type='text/css'/>
+    <!--clock init-->
+    <script src="../Bootstrap/js/css3clock.js"></script>
+    <!--Easy Pie Chart-->
+    <!--skycons-icons-->
+    <script src="../Bootstrap/js/skycons.js"></script>
+    <script src="../Bootstrap/js/jquery.easydropdown.js"></script>
+    <!--//skycons-icons-->
+
+    <!--JQuery for multiple includes in the global/ directory-->
+    <script>
+        $(function(){
+            var includes = $('[data-include]');
+            jQuery.each(includes, function(){
+                var file = 'global/' + $(this).data('include') + '.html';
+                $(this).load(file);
+            });
+        });
+    </script>
+
+</head>
+<body>
+<div class="page-container">
+    <!--/content-inner-->
+    <div class="left-content">
+        <div class="inner-content">
+            <div class="inner-content">
+                <!--outter-wp-->
+                <div class="outter-wp">
+                    <!--sub-heard-part-->
+                    <div class="sub-heard-part">
+                        <ol class="breadcrumb m-b-0">
+                            <li><a href="index.html">Home</a></li>
+                            <li class="active">Paramètres</li>
+                        </ol>
+                    </div>
+                    <!--//sub-heard-part-->
+                    <!--/profile-inner-->
+                    <div class="profile-section-inner">
+                            <h3 class="inner-tittle">Mise à jour le mot de passe</h3>
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Vieux mdp</label>
+                                    <div class="col-sm-8">
+                                        <input type="password" class="form-control1" placeholder="" id="oldpassword">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Nouveau mdp</label>
+                                    <div class="col-sm-8">
+                                        <input type="password" class="form-control1" placeholder="" id="newpassword1">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label">Nouveau mdp (encore une fois)</label>
+                                    <div class="col-sm-8">
+                                        <input type="password" class="form-control1" placeholder="" id="newpassword2">
+                                    </div>
+                                </div>
+                                <div class="form-group button-2">
+                                    <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                                </div>
+                            </form>
+                    </div>
+
+                    <!--//profile-inner-->
+                    <!--//profile-->
+                </div>
+                <!--//outer-wp-->
+            </div>
+        </div>
+    </div>
+    <!--//content-inner-->
+    <!--/sidebar-menu-->
+    <div data-include="sidebar"></div>
+    <div class="clearfix"></div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $.ajax({
+            async: false,
+            type: "get",
+            url: "../session",
+
+            success: function (data) {
+                if (data.returnCode == "SUCCESS") {
+                    $(".name-caret").text(data.data.voter.familyName + " " + data.data.voter.givenName);
+                } else {
+                    window.location.replace("./not_login.html");
+                }
+            },
+            error: function () {
+            }
+        });
+    })
+</script>
+
+<script>
+    $("form").submit(function (e) {
+        e.preventDefault();
+        $.ajax({
+            type: "put",
+            url: "../voter?oldPassword="+$("#oldpassword").val()+"&password="+$("#newpassword1").val(),
+
+            success: function(data){
+                if(data.returnCode=="SUCCESS"){
+                    alert("success");
+                    window.location.replace("./settings.html");
+                }else{
+                    alert(data.returnMsg);
+                }
+            },
+            error: function(){
+            }
+        });
+    });
+</script>
+
+<!--js -->
+<script src="js/jquery.nicescroll.js"></script>
+<script src="js/scripts.js"></script>
+<!-- Bootstrap Core JavaScript -->
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>

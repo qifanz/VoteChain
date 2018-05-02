@@ -17,8 +17,8 @@ public class Election {
     private Date endTime;
     private Set<Candidate> candidates;
     private Set<PubKey> pubKeys;
-    private Integer nbCandidates;
     private Integer type; //1 for simple, 2 for delegation, 3 for condorcet, 4 for majoritaire
+    private String description;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -86,16 +86,8 @@ public class Election {
         candidates.add(candidate);
     }
 
-    @Column(name = "ELECTION_NBCANDIDATES")
-    public Integer getNbCandidates() {
-        return nbCandidates;
-    }
 
-    public void setNbCandidates(Integer nbCandidates) {
-        this.nbCandidates = nbCandidates;
-    }
-
-    @Column(name = "ELECTION_TYPE")
+    @Column(name = "ELECTION_TYPE" ,nullable=false)
     public Integer getType() {
         return type;
     }
@@ -104,11 +96,20 @@ public class Election {
         this.type = type;
     }
 
-    public Election(String name, Date startTime, Date endTime, Integer nbCandidates, Integer type) {
+    @Column(name = "ELECTION_DESCRIPTION")
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Election(String name, Date startTime, Date endTime, Integer type,String description) {
         this.name = name;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.nbCandidates = nbCandidates;
+        this.description = description;
         this.type = type;
         candidates=new HashSet<>();
         pubKeys=new HashSet<>();

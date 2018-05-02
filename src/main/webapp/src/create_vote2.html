@@ -1,0 +1,331 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content=""/>
+    <script type="application/x-javascript"> addEventListener("load", function () {
+        setTimeout(hideURLbar, 0);
+    }, false);
+    function hideURLbar() {
+        window.scrollTo(0, 1);
+    } </script>
+    <link href="../resources/css/siying.css" rel='stylesheet' type='text/css'/>
+    <!-- Bootstrap Core CSS -->
+    <link href="../Bootstrap/css/bootstrap.min.css" rel='stylesheet' type='text/css'/>
+    <!-- Custom CSS -->
+    <link href="../Bootstrap/css/style.css" rel='stylesheet' type='text/css'/>
+    <!-- Graph CSS -->
+    <link href="../Bootstrap/css/font-awesome.css" rel="stylesheet">
+    <!-- jQuery -->
+    <link href='https://fonts.googleapis.com/css?family=Roboto:700,500,300,100italic,100,400' rel='stylesheet'
+          type='text/css'>
+    <!-- lined-icons -->
+    <link rel="stylesheet" href="../Bootstrap/css/icon-font.min.css" type='text/css'/>
+    <!-- //lined-icons -->
+    <script src="../Bootstrap/js/jquery-1.10.2.min.js"></script>
+    <script src="../Bootstrap/js/amcharts.js"></script>
+    <script src="../Bootstrap/js/serial.js"></script>
+    <script src="../Bootstrap/js/light.js"></script>
+    <script src="../Bootstrap/js/radar.js"></script>
+    <link href="../Bootstrap/css/barChart.css" rel='stylesheet' type='text/css'/>
+    <link href="../Bootstrap/css/fabochart.css" rel='stylesheet' type='text/css'/>
+    <!--clock init-->
+    <script src="../Bootstrap/js/css3clock.js"></script>
+    <!--Easy Pie Chart-->
+    <!--skycons-icons-->
+    <script src="../Bootstrap/js/skycons.js"></script>
+
+    <script src="../Bootstrap/js/jquery.easydropdown.js"></script>
+
+    <!--//skycons-icons-->
+</head>
+<body>
+<div class="page-container">
+    <!--/content-inner-->
+    <div class="left-content">
+        <div class="inner-content">
+            <!-- header-starts -->
+            <div class="header-section">
+                <!--menu-right-->
+
+                <!-- //header-ends -->
+            </div>
+            <!--//outer-wp-->
+            <div class="outter-wp">
+                <!--/sub-heard-part-->
+                <div class="sub-heard-part">
+                    <ol class="breadcrumb m-b-0">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">Forms</li>
+                    </ol>
+                </div>
+                <!--/sub-heard-part-->
+                <!--/forms-->
+                <div class="forms-main">
+                    <!--/forms-inner-->
+                    <div class="forms-inner">
+                        <!--/set-2-->
+                        <div class="set-1">
+                            <div class="graph-2 general">
+                                <h3 class="inner-tittle two">Creation de vote </h3>
+                                <div class="grid-1">
+                                    <div class="form-body">
+                                        <form class="form-horizontal">
+                                            <div class="form-group">
+                                                <label for="titre" class="col-sm-2 control-label">Titre de vote</label>
+                                                <div class="col-sm-8">
+                                                    <input type="text" class="form-control1" id="titre"
+                                                           placeholder="Titre de vote">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <p class="help-block">Your help text!</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="starttime" class="col-sm-2 control-label">Start time</label>
+                                                <div class="col-sm-8">
+                                                    <input type="date" class="form-control1" id="starttime"
+                                                           placeholder="Start time">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <p class="help-block">Your help text!</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="endtime" class="col-sm-2 control-label">End time</label>
+                                                <div class="col-sm-8">
+                                                    <input type="date" class="form-control1" id="endtime"
+                                                           placeholder="End time">
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <p class="help-block">Your help text!</p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label">Type de vote</label>
+                                                <div class="col-sm-8">
+                                                    <div class="radio-inline"><label><input type="radio"
+                                                                                            name="election-type"
+                                                                                            value="1">
+                                                        simple</label>
+                                                    </div>
+                                                    <div class="radio-inline"><label><input type="radio"
+                                                                                            name="election-type"
+                                                                                            value="2">
+                                                        delegation</label></div>
+                                                    <div class="radio-inline"><label><input type="radio"
+                                                                                            name="election-type"
+                                                                                            value="3">
+                                                        condorcet</label></div>
+                                                    <div class="radio-inline"><label><input type="radio"
+                                                                                            name="election-type"
+                                                                                            value="4">
+                                                        majoritaire</label></div>
+                                                </div>
+                                            </div>
+
+                                            <label class="col-sm-2 control-label">Candidates</label>
+                                            <table class="table" id="candidates-table" style="width:50%;">
+                                                <thead>
+                                                </thead>
+                                                <tbody>
+                                                <tr>
+                                                    <th scope="row">1</th>
+                                                    <td>
+                                                        <input type="text" class="form-control1 input-sm">
+                                                    </td>
+                                                    <td>
+                                                        <input type="button" class="btn btn-lg btn-link" value="Delete"
+                                                               onclick="deleteRow(this)">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">2</th>
+                                                    <td>
+                                                        <input type="text" class="form-control1 input-sm">
+                                                    </td>
+                                                    <td>
+                                                        <input type="button" class="btn btn-lg btn-link" value="Delete"
+                                                               onclick="deleteRow(this)">
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">3</th>
+                                                    <td>
+                                                        <input type="text" class="form-control1 input-sm">
+                                                    </td>
+                                                    <td>
+                                                        <input type="button" class="btn btn-lg btn-link" value="Delete"
+                                                               onclick="deleteRow(this)">
+                                                    </td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                            <div class="form-group">
+                                                <div class="col-sm-8" style="position: relative;left:20%;">
+                                                    <label> nombre de lignes à ajouter: <input type="number"
+                                                                                               style="width:50px"
+                                                                                               id="number" value="1">
+                                                    </label>
+                                                    <td>
+                                                        <input type="button" class="btn btn-lg btn-link" value="Add"
+                                                               onclick="addRow()">
+                                                    </td>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="txtarea1" class="col-sm-2 control-label">Description</label>
+                                                <div class="col-sm-8"><textarea name="txtarea1" id="txtarea1" cols="50"
+                                                                                rows="10"
+                                                                                class="form-control1"
+                                                                                style="width: 93%;height:150px;"
+                                                                                placeholder="La description de vote..."></textarea>
+                                                </div>
+                                            </div>
+                                            <input type="submit" class="btn btn-primary btn-lg" value="Valider">
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <!--//set-2-->
+
+                    </div>
+                    <!--//forms-inner-->
+                </div>
+                <!--//forms-->
+            </div>
+            <!--//outer-wp-->
+
+
+            <!--/sidebar-menu-->
+            <div class="sidebar-menu">
+                <header class="logo">
+                    <a href="#" class="sidebar-icon"> <span class="fa fa-bars"></span></a><a href="admin_accueil.html">
+                    <span id="logo"> <h1>VoteChain</h1></span>
+                    <!--<img id="logo" src="" alt="Logo"/>-->
+                </a>
+                </header>
+                <div style="border-top:1px solid rgba(69, 74, 84, 0.7)"></div>
+                <!--/down-->
+                <div class="down">
+                    <a href="index.html"><img src="../Ressources/user.png" height="70" width="70"></a>
+                    <a href="index.html"><span class=" name-caret">Jasmin Leo</span></a>
+                    <ul>
+                        <li><a class="tooltips" href="index.html"><span>Profile</span><i class="lnr lnr-user"></i></a>
+                        </li>
+                        <li><a class="tooltips" href="index.html"><span>Settings</span><i class="lnr lnr-cog"></i></a>
+                        </li>
+                        <li><a class="tooltips" href="login.html"><span>Log out</span><i
+                                class="lnr lnr-power-switch"></i></a></li>
+                    </ul>
+                </div>
+                <!--//down-->
+                <div class="menu">
+                    <ul id="menu">
+                        <li><a href="user_management.html"><span>Gestion des utilisateurs</span></a></li>
+                        <li><a href="vote.html"><span>Créer un vote</span></a></li>
+                        <li><a href="vote.html"><span>Votes en cours</span></a></li>
+                        <li><a href="historique.html"><span>Historique des votes</span></a></li>
+                        <li><a href="vote_explanation.html"><span>Les différents systèmes de vote</span></a></li>
+                        <li><a href="forum.html"><span>Forum</span></a></li>
+                        <li><a href="apropos.html"><span>A propos</span></a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+        <script>
+            var toggle = true;
+
+            $(".sidebar-icon").click(function () {
+                if (toggle) {
+                    $(".page-container").addClass("sidebar-collapsed").removeClass("sidebar-collapsed-back");
+                    $("#menu span").css({"position": "absolute"});
+                }
+                else {
+                    $(".page-container").removeClass("sidebar-collapsed").addClass("sidebar-collapsed-back");
+                    setTimeout(function () {
+                        $("#menu span").css({"position": "relative"});
+                    }, 400);
+                }
+
+                toggle = !toggle;
+            });
+        </script>
+        <script>
+            function deleteRow(r) {
+                var i = r.parentNode.parentNode.rowIndex;
+                document.getElementById("candidates-table").deleteRow(i);
+            }
+
+            function addRow() {
+                var val = $("#number").val();
+                var size = $("table tr").size() + 1;
+                for (var i = 0; i < val; i++) {
+                    var index = size + i;
+                    var html = "<tr><th scope='row'>" + index + "</th> <td> <input type='text' class='form-control1 input-sm'> " +
+                        "</td> <td> <input type='button' class='btn btn-lg btn-link' value='Delete'" +
+                        "onclick='deleteRow(this)'></td></tr>>"
+                    $("#candidates-table tbody").append(html)
+                }
+                alert(val);
+            }
+        </script>
+        <script>
+            $("form").submit(function (e) {
+                e.preventDefault();
+                var starttime = $("#starttime").val();
+                var endtime = $("#endtime").val();
+                var name = $("#titre").val();
+                var type = $('input[type="radio"][name="election-type"]:checked').val();
+                var size = $("table tr").size();
+                var candidatesStr = '[';
+                $("table tbody").find('tr').each(function () {
+                    var candidateName = $(this).children("td").find("input").val();
+                    if (candidateName != "") {
+                        if ($(this).index() != 0) {
+                            candidatesStr += ',';
+                        }
+                        candidatesStr += '{"name":' + '"' + candidateName + '"}';
+                    }
+                });
+                candidatesStr += ']';
+                alert(candidatesStr)
+                var candidatesJSON = $.parseJSON(candidatesStr);
+                dataJSON = {
+                    name: name,
+                    startTime: starttime,
+                    endTime: endtime,
+                    candidates: candidatesJSON,
+                    type: type
+                };
+                alert(dataJSON.candidates);
+                $.ajax({
+                    async: false,
+                    type: "post",
+                    url: "../elections",
+                    contentType: "application/json;charset=UTF-8",
+                    dataType: "json",
+                    data: JSON.stringify(dataJSON),
+                    success: function (data) {
+                        if (data.returnCode == "SUCCESS") {
+                            alert("success");
+                        } else {
+                            alert("Loading error");
+                        }
+                    },
+                    error: function () {
+                    }
+                })
+            })
+        </script>
+    </div>
+</div>
+</body>
+</html>

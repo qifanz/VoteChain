@@ -11,6 +11,7 @@ public class Candidate {
     private Integer id;
     private String name;
     private PubKey pubKey;
+
    // private Election election;
 
     @Id

@@ -4,12 +4,10 @@ import fr.insalyon.h4112.Service.VoterService;
 import fr.insalyon.h4112.Utility.ResultMapFactory;
 import fr.insalyon.h4112.model.Voter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +22,7 @@ public class VoterController {
 
     @RequestMapping(value="/voter", method = { RequestMethod.POST})
     @ResponseBody
-    public Map<String,Object> saveVoter(String familyName, String givenName, String login, String password){
+    public Map<String,Object> saveVoter(String familyName, String givenName, String login, String password,String address,String birthday){
         Map<String,Object> map=new HashMap<String,Object>();
         Voter voter=null;
 
@@ -33,7 +31,7 @@ public class VoterController {
         }
 
         try {
-            voter=voterService.registerVoter(familyName,givenName,login,password);
+            voter=voterService.registerVoter(familyName,givenName,login,password,address,birthday);
         } catch (Exception e) {
             System.err.println(e.getMessage());
             return ResultMapFactory.getErrorResultMap("Inscription echoue, veuillez reessayer");
@@ -44,6 +42,35 @@ public class VoterController {
         }
         return ResultMapFactory.getErrorResultMap("Inscription echoue, veuillez reessayer");
     }
+
+    @RequestMapping(value="/voter", method = { RequestMethod.PUT})
+    @ResponseBody
+    public Map<String,Object> updateMdp(String oldPassword, String password, HttpSession session ) {
+        Voter v= (Voter) session.getAttribute("voter");
+        if (v.getHashPassword().equals(""+oldPassword.hashCode())) {
+            v.setHashPassword(password.hashCode()+"");
+            voterService.updateVoter(v);
+            return ResultMapFactory.getSuccessResultMap();
+
+        }
+        else {
+            return ResultMapFactory.getErrorResultMap("password erreur");
+        }
+
+    }
+    @RequestMapping(value="/voter/{id}", method = { RequestMethod.GET})
+    @ResponseBody
+    public Map<String,Object> getVoter(@PathVariable("id") Integer id) {
+        Map<String,Object> map=new HashMap<String,Object>();
+        Voter v=voterService.getVoter(id);
+        if (v==null) {
+            return ResultMapFactory.getErrorResultMap("Le voter que vous avez demander n'existe pas");
+        } else {
+            map.put("voter",v);
+            return ResultMapFactory.getSuccessResultMap(map);
+        }
+    }
+
     @RequestMapping(value="/session", method = { RequestMethod.POST})
     @ResponseBody
     public Map<String,Object> login(String login, String password, HttpSession session){
